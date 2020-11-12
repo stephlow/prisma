@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace DMMF {
   export interface Document {
@@ -154,7 +153,7 @@ export namespace DMMF {
   export interface ModelMapping {
     model: string
     plural: string
-    findOne?: string | null
+    findUnique?: string | null
     findFirst?: string | null
     findMany?: string | null
     create?: string | null
@@ -167,7 +166,7 @@ export namespace DMMF {
   }
 
   export enum ModelAction {
-    findOne = 'findOne',
+    findUnique = 'findUnique',
     findFirst = 'findFirst',
     findMany = 'findMany',
     create = 'create',

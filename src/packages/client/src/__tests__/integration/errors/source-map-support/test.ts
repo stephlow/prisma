@@ -11,7 +11,7 @@ test('source-map-support', async () => {
   await expect(prisma.$connect().catch((err) => {
     console.log(err)
   }).then(() => {
-    return prisma.user.findOne({ where: { id: null as any } })
+    return prisma.user.findUnique({ where: { id: null as any } })
   })).rejects.toMatchSnapshot()
 
   prisma.$disconnect()

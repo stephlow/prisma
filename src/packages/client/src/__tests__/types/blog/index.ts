@@ -1,15 +1,21 @@
 import {
-  PrismaClient,
-  Post,
-  User,
-  prismaVersion,
-  FindManyMachineDataArgs,
-  LikeUpdateManyArgs,
-  sql,
-  join,
-  empty,
-  raw,
-  Sql
+    empty, FindManyMachineDataArgs,
+
+
+    join, LikeUpdateManyArgs, Post, PrismaClient,
+
+
+    prismaVersion,
+
+
+
+
+
+    raw, sql,
+
+
+
+    Sql, User
 } from '@prisma/client'
 
 // tslint:disable
@@ -105,7 +111,7 @@ async function main() {
     title: string
     content: string | null
     author: User | null
-  } | null = await prisma.post.findOne({
+  } | null = await prisma.post.findUnique({
     where: {
       id: '',
     },
@@ -198,7 +204,7 @@ async function main() {
 
   const id = users[0].posts[0].author?.id
 
-  const like = await prisma.like.findOne({
+  const like = await prisma.like.findUnique({
     where: {
       userId_postId: {
         postId: '',

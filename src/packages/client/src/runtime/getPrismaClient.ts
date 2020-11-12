@@ -213,7 +213,7 @@ export interface GetPrismaClientOptions {
 }
 
 export type Action =
-  | 'findOne'
+  | 'findUnique'
   | 'findFirst'
   | 'findMany'
   | 'create'
@@ -227,7 +227,7 @@ export type Action =
   | 'aggregate'
 
 const actionOperationMap = {
-  findOne: 'query',
+  findUnique: 'query',
   findFirst: 'query',
   findMany: 'query',
   count: 'query',
@@ -1186,7 +1186,7 @@ export class PrismaClientFetcher {
           return 'transaction-batch'
         }
 
-        if (!request.document.children[0].name.startsWith('findOne')) {
+        if (!request.document.children[0].name.startsWith('findUnique')) {
           return null
         }
 
@@ -1351,7 +1351,7 @@ export class PrismaClientFetcher {
 export function getOperation(action: DMMF.ModelAction): 'query' | 'mutation' {
   if (
     action === DMMF.ModelAction.findMany ||
-    action === DMMF.ModelAction.findOne ||
+    action === DMMF.ModelAction.findUnique ||
     action === DMMF.ModelAction.findFirst
   ) {
     return 'query'

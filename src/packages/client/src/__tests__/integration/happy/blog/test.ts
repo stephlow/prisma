@@ -1,6 +1,5 @@
 import { generateTestClient } from '../../../../utils/getTestClient'
 
-
 test('blog', async () => {
   await generateTestClient()
 
@@ -32,7 +31,7 @@ test('blog', async () => {
   // Test connecting and disconnecting all the time
   await db.user.findMany()
   const posts = await db.user
-    .findOne({
+    .findUnique({
       where: {
         email: 'a@a.de',
       },

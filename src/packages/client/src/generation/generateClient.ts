@@ -1,23 +1,23 @@
-import copy from '@timsuchanek/copy'
 import {
   BinaryPaths,
   DataSource,
   DMMF,
   GeneratorConfig,
 } from '@prisma/generator-helper'
+import { getVersion } from '@prisma/sdk/dist/engineCommands'
+import copy from '@timsuchanek/copy'
+import chalk from 'chalk'
 import fs from 'fs'
 import makeDir from 'make-dir'
 import path from 'path'
-import chalk from 'chalk'
+import pkgUp from 'pkg-up'
 import { promisify } from 'util'
 import { DMMF as PrismaClientDMMF } from '../runtime/dmmf-types'
 import { Dictionary } from '../runtime/utils/common'
-import { getPrismaClientDMMF } from './getDMMF'
 import { resolveDatasources } from '../utils/resolveDatasources'
 import { extractSqliteSources } from './extractSqliteSources'
-import { TSClient, TS, JS } from './TSClient'
-import { getVersion } from '@prisma/sdk/dist/engineCommands'
-import pkgUp from 'pkg-up'
+import { getPrismaClientDMMF } from './getDMMF'
+import { JS, TS, TSClient } from './TSClient'
 
 const remove = promisify(fs.unlink)
 const writeFile = promisify(fs.writeFile)
@@ -313,7 +313,6 @@ export async function generateClient({
   return { prismaClientDmmf, fileMap }
 }
 
-
 async function fileSize(name: string): Promise<number | null> {
   try {
     const statResult = await stat(name)
@@ -517,7 +516,7 @@ function validateDmmfAgainstDenylists(
         `Extract${name}SelectDeleteArgs`,
         `Extract${name}IncludeDeleteArgs`,
 
-        `FindOne${name}Args`,
+        `FindUnique${name}Args`,
 
         `FindMany${name}Args`,
 

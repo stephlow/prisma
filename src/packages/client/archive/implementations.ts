@@ -1,10 +1,10 @@
 class Prisma {
   users = {
-    findOne() {},
+    findUnique() {},
   }
 }
 
-class UsersFindOne {}
+class UsersFindUnique {}
 
 interface InstructionsOptions {
   instructions: object[]
